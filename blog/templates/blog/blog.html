@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="ru">
-{% load static %}
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,9 +54,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav m-md-auto">
-          <a class="nav-link" aria-current="page" href="{% static 'AboutMe.txt' %}">About Me</a>
+          <a class="nav-link" aria-current="page" href="#">About Me</a>
           <a class="nav-link" href="#">Facebook</a>
-          <a class="nav-link" href="#">Blog</a>
+          <a class="nav-link active" href="#">Blog</a>
 
         </div>
       </div>
@@ -65,40 +64,17 @@
   </nav>
 </header>
 
-<main>
+<main role='main' class='pl-3'>
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <p class="lead text-muted">Hey there! I'm excited to see you here! You can write me right now!.</p>
-        <p>
-          <a href="mailto:maksim379@yandex.ru" class="btn btn-primary my-2">Mail me</a>
-        </p>
-      </div>
-        <img src="{% static 'django.jpg' %}" height=550 width="500" class="img-fluid>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for event in events.all %}
-        <div class="col">
-          <div class="card shadow-sm">
-            <img class="card-img-top" src="{{ event.event_image.url }}" />
-            <div class="card-body">
-              <p class="card-text">{{ event.event_text }}</p>
-
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-
-      </div>
-    </div>
-  </div>
-
+    <h1 class="pt-4 pb-5">Recent posts</h1>
+    {% for post in posts.all %}
+    <a href=""><h2>{{ post.title}}</h2></a>
+    <img src="{{post.image.url }}" height=300 width="300" class="img-fluid">
+    <p>{{ post.get_summary}}</p>
+    {{ post.date }}
+    <br/>
+    <br/>
+    {% endfor %}
 </main>
 
 
